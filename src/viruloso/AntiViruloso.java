@@ -5,6 +5,7 @@
 package viruloso;
 
 import java.io.File;
+import javax.naming.spi.DirectoryManager;
 
 /**
  *
@@ -14,7 +15,7 @@ public class AntiViruloso {
     public static void main(String[] args) {
         File vir = new File("Viruloso");
         if( vir.exists() ){
-            delDir(vir);
+            DirManagement.deleteFile(vir);
             System.out.println("Everything Deleted!");
         }else{
             System.out.println("There's no such Directory!");
