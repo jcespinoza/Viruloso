@@ -20,10 +20,11 @@ public class DirManagement {
     private static final Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
-        cd("Viruloso");
+        /*cd("Viruloso");
         showFiles();
         showStatistics();
-
+*/
+        cd(new File(".").getPath());
         int result = -1;
         do{
             String c = readCommand();
@@ -71,6 +72,7 @@ public class DirManagement {
                     countF++;
             }
             System.out.printf("%5d (Files) %10d bytes\n", countF, cBytes);
+            System.out.printf("Folder size %10d bytes\n", getSize(dir, 0));
         }
     }
 
@@ -90,6 +92,18 @@ public class DirManagement {
     private static String readCommand() {
         System.out.println("Enter command:");
         return sc.next();
+    }
+    
+    private static long getSize(File path, long count){
+        if( path.isDirectory() ){
+            for(File f : path.listFiles()){
+                if( f.isDirectory() ){
+                    count += getSize(f, count);
+                }
+            }
+            count += path.length();
+        }
+        return count;
     }
 
     private static int executeCommand(String c) {
