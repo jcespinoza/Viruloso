@@ -1,0 +1,6 @@
+Formato info.jc
+
+PeopleIknow
+string name
+int age
+boolean isFamily
